@@ -18,6 +18,14 @@
   justify-content: space-between;
 }
 
+.navbar__logo {
+  transition: opacity 0.25s ease-in-out;
+}
+
+.navbar__logo:hover {
+  opacity: 0.75;
+}
+
 .navbar__logo img {
   width: 46px;
   height: 46px;
