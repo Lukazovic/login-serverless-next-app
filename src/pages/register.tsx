@@ -3,10 +3,11 @@ import Head from '../components/Head';
 import Navbar from '../components/Navbar';
 import Form from '../components/Form';
 
-const Login: React.FC = () => {
+const Register: React.FC = () => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
+    confirmPassword: '',
   });
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -22,13 +23,13 @@ const Login: React.FC = () => {
 
   return (
     <div>
-      <Head title="Login" />
+      <Head title="Register" />
 
       <Navbar />
 
-      <main id="login">
-        <div className="login__wrapper">
-          <Form title="Login" buttonText="Login" onSubmit={handleSubmit}>
+      <main id="register">
+        <div className="register__wrapper">
+          <Form title="Register" buttonText="Register" onSubmit={handleSubmit}>
             <input
               type="text"
               name="email"
@@ -45,6 +46,14 @@ const Login: React.FC = () => {
               onChange={handleInputChange}
               placeholder="Password"
             />
+            <input
+              type="password"
+              name="confirmPassword"
+              id="confirmPassword"
+              value={formData.confirmPassword}
+              onChange={handleInputChange}
+              placeholder="Confirm Password"
+            />
           </Form>
         </div>
       </main>
@@ -52,4 +61,4 @@ const Login: React.FC = () => {
   );
 };
 
-export default Login;
+export default Register;
