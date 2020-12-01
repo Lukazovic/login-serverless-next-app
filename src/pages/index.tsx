@@ -8,7 +8,10 @@ export default function Home() {
 
       <Navbar />
 
-      <h1>Home</h1>
+      <main id="main">
+        <h1>Welcome!</h1>
+        <h3>Login with serverless functions</h3>
+      </main>
     </div>
   );
 }

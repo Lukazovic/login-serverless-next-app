@@ -1,0 +1,27 @@
+#main {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+#main h1 {
+  font-size: 4em;
+}
+
+#main h3 {
+  font-size: 1.5em;
+}
+
+@media (min-width: 768px) {
+  #main h1 {
+    font-size: 8em;
+  }
+
+  #main h3 {
+    font-size: 4em;
+  }
+}
