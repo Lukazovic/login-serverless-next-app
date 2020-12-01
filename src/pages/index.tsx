@@ -1,14 +1,11 @@
-import Head from 'next/head'
+import Head from "../components/Head";
 
 export default function Home() {
   return (
-    <div >
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <div>
+      <Head title="Login Serveless" />
 
       <h1>Home</h1>
     </div>
-  )
+  );
 }
