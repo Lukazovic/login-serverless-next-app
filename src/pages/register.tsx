@@ -6,8 +6,12 @@ import Head from '../components/Head';
 import Navbar from '../components/Navbar';
 import Form from '../components/Form';
 
+import validateUserCreate from '../app/validators/userCreate';
+
+import { IUser } from '../app/helpers/interfaces/user';
+
 const Register: React.FC = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<IUser>({
     name: '',
     email: '',
     password: '',
@@ -25,13 +29,16 @@ const Register: React.FC = () => {
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
 
-    if (formData.password !== formData.confirmPassword) {
-      alert('Password not valid');
+    const { errors } = await validateUserCreate(formData);
+
+    if (errors) {
+      alert(errors[0]);
       return;
     }
 
     try {
       const response = await axios.post('/api/v1/users', formData);
+      alert('success');
       console.log(response.data);
       router.push('/login');
     } catch (err) {
