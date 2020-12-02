@@ -1,0 +1,11 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Admin",
+      "email": "admin@email.com",
+      "password": "password",
+      "created_at": 3156161313
+    }
+  ]
+}
