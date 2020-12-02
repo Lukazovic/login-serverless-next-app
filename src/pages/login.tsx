@@ -1,4 +1,7 @@
 import { useState, FormEvent, ChangeEvent } from 'react';
+import axios from 'axios';
+import { useRouter } from 'next/router';
+
 import Head from '../components/Head';
 import Navbar from '../components/Navbar';
 import Form from '../components/Form';
@@ -8,6 +11,7 @@ const Login: React.FC = () => {
     email: '',
     password: '',
   });
+  const router = useRouter();
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -16,8 +20,17 @@ const Login: React.FC = () => {
     });
   };
 
-  const handleSubmit = (event: FormEvent) => {
+  const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
+
+    try {
+      const response = await axios.post('api/v1/users/session', formData);
+      console.log(response.data);
+      alert('Success');
+      router.push('/');
+    } catch (err) {
+      alert(err.response.data.error);
+    }
   };
 
   return (
