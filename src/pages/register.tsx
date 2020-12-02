@@ -1,14 +1,19 @@
 import { useState, FormEvent, ChangeEvent } from 'react';
+import axios from 'axios';
+import { useRouter } from 'next/router';
+
 import Head from '../components/Head';
 import Navbar from '../components/Navbar';
 import Form from '../components/Form';
 
 const Register: React.FC = () => {
   const [formData, setFormData] = useState({
+    name: '',
     email: '',
     password: '',
     confirmPassword: '',
   });
+  const router = useRouter();
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -17,8 +22,21 @@ const Register: React.FC = () => {
     });
   };
 
-  const handleSubmit = (event: FormEvent) => {
+  const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
+
+    if (formData.password !== formData.confirmPassword) {
+      alert('Password not valid');
+      return;
+    }
+
+    try {
+      const response = await axios.post('/api/v1/users', formData);
+      console.log(response.data);
+      router.push('/login');
+    } catch (err) {
+      alert(err.response.data.error);
+    }
   };
 
   return (
@@ -32,6 +50,14 @@ const Register: React.FC = () => {
           <Form title="Register" buttonText="Register" onSubmit={handleSubmit}>
             <input
               type="text"
+              name="name"
+              id="name"
+              value={formData.name}
+              onChange={handleInputChange}
+              placeholder="Name"
+            />
+            <input
+              type="email"
               name="email"
               id="email"
               value={formData.email}
