@@ -11,9 +11,13 @@ class userController {
   }
 
   show(request: NowRequest, response: NowResponse) {
-    const { id } = request.query;
+    const id = request.query.id as string;
 
-    const user = db.users.filter((user) => user.id === id);
+    const user = User.findById(id);
+
+    if (!user) {
+      return response.status(404).json({ error: 'User not found!' });
+    }
 
     return response.status(200).json(user);
   }
