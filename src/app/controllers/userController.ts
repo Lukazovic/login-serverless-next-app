@@ -10,7 +10,7 @@ class userController {
   show(request: NowRequest, response: NowResponse) {
     const { id } = request.query;
 
-    const user = db.users.filter((user) => user.id === Number(id));
+    const user = db.users.filter((user) => user.id === id);
 
     return response.status(200).json(user);
   }
@@ -19,11 +19,11 @@ class userController {
     const { name, email, password } = request.body;
 
     const newUser = {
-      id: Number(db.users.length) + 1,
+      id: `${db.users.length}+1`,
       name,
       email,
       password,
-      created_at: Date.now(),
+      createdAt: Date.now(),
     };
 
     db.users.push(newUser);
