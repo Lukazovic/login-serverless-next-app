@@ -26,6 +26,11 @@ class User extends Model {
     return user;
   }
 
+  static findByEmail(email: string) {
+    const [user] = db.users.filter((user) => user.email === email);
+    return user;
+  }
+
   save() {
     db['users'].push({
       id: this.id,
