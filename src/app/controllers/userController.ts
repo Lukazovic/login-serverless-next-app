@@ -1,10 +1,13 @@
 import fs from 'fs';
 import { NowRequest, NowResponse } from '@vercel/node';
 import db from '../../../db.json';
+import User from '../models/UserModel';
 
 class userController {
   index(request: NowRequest, response: NowResponse) {
-    return response.status(200).json(db.users);
+    const users = User.findAll();
+
+    return response.status(200).json(users);
   }
 
   show(request: NowRequest, response: NowResponse) {

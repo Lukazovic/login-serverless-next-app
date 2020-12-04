@@ -2,13 +2,6 @@ import fs from 'fs';
 import db from '../../../db.json';
 import Model from './Model';
 
-interface IUser {
-  id: string;
-  name: string;
-  email: string;
-  password: string;
-}
-
 class User extends Model {
   name: string;
   email: string;
@@ -22,6 +15,10 @@ class User extends Model {
     this.email = email;
     this.password = password;
     this.createdAt = Date.now();
+  }
+
+  static findAll() {
+    return db.users;
   }
 
   save() {
