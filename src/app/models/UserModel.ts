@@ -21,6 +21,11 @@ class User extends Model {
     return db.users;
   }
 
+  static findById(id: string) {
+    const [user] = db.users.filter((user) => user.id === id);
+    return user;
+  }
+
   save() {
     db['users'].push({
       id: this.id,
