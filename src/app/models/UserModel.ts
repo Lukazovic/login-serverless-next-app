@@ -42,6 +42,12 @@ class User extends Model {
   }
 
   save() {
+    const userExists = User.findByEmail(this.email);
+
+    if (userExists) {
+      throw new Error('Email is already taken');
+    }
+
     db['users'].push({
       id: this.id,
       name: this.name,
