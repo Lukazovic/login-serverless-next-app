@@ -1,11 +1,11 @@
 {
   "users": [
     {
-      "id": 1,
+      "id": "3ec935f1-4476-4724-8ffd-2a34066c7c5f",
       "name": "Admin",
       "email": "admin@email.com",
       "password": "password",
-      "created_at": 3156161313
+      "createdAt": 3156161313
     }
   ]
 }
