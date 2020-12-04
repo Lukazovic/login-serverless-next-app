@@ -1,11 +1,11 @@
 import { NowRequest, NowResponse } from '@vercel/node';
-import db from '../../../db.json';
+import User from '../models/UserModel';
 
 class sessionController {
   create(request: NowRequest, response: NowResponse) {
     const { email, password } = request.body;
 
-    const [user] = db.users.filter((dbUser) => dbUser.email === email);
+    const user = User.findByEmail(email);
 
     if (!user) {
       return response.status(404).json({ error: 'User not found!' });
