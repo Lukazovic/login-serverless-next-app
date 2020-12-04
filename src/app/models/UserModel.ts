@@ -21,21 +21,6 @@ class User extends Model {
     return db.users;
   }
 
-  static findWhere(object: object) {
-    const keys = Object.keys(object);
-    const values = Object.values(object);
-
-    const users = keys.map((key, index) =>
-      db.users.filter((user) => user[key] === values[index])
-    );
-    return users;
-  }
-
-  static findById(id: string) {
-    const [user] = this.findWhere({ id });
-    return user;
-  }
-
   static findByEmail(email: string) {
     const [user] = this.findWhere({ email });
     return user;
