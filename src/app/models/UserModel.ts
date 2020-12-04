@@ -42,7 +42,7 @@ class User extends Model {
   }
 
   save() {
-    const userExists = User.findByEmail(this.email);
+    const [userExists] = User.findByEmail(this.email);
 
     if (userExists) {
       throw new Error('Email is already taken');
