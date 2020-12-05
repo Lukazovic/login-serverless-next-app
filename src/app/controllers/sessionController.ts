@@ -6,9 +6,8 @@ import authService from '../services/tools/auth';
 class sessionController {
   create(request: NowRequest, response: NowResponse) {
     const { email, password } = request.body;
-    console.log({ email, password });
 
-    const [user] = User.findByEmail(email);
+    const user = User.findByEmail(email);
 
     if (!user) {
       return response.status(404).json({ error: 'User not found!' });

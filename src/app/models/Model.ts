@@ -12,7 +12,7 @@ class Model {
     const keys = Object.keys(object);
     const values = Object.values(object);
 
-    const users = keys.map((key, index) =>
+    const [users] = keys.map((key, index) =>
       db.users.filter((user) => user[key] === values[index])
     );
     return users;
