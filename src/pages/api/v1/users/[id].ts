@@ -1,11 +1,9 @@
 import { NowRequest, NowResponse } from '@vercel/node';
 
+import authMiddleware from '../../../../app/middlewares/auth';
 import userController from '../../../../app/controllers/userController';
 
-export default function userHandler(
-  request: NowRequest,
-  response: NowResponse
-) {
+const handler = (request: NowRequest, response: NowResponse) => {
   const { method } = request;
 
   switch (method) {
@@ -16,4 +14,6 @@ export default function userHandler(
       response.setHeader('Allow', ['GET']);
       response.status(405).end(`Method ${method} Not Allowed`);
   }
-}
+};
+
+export default authMiddleware(handler);

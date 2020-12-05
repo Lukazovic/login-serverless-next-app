@@ -23,12 +23,28 @@ class User extends Model {
     return db.users;
   }
 
+  static findById(id: string) {
+    const [result] = this.findWhere({ id });
+
+    if (!result) return undefined;
+
+    const user = new User(result);
+    user.id = result.id;
+    user.createdAt = result.createdAt;
+
+    return user;
+  }
+
   static findByEmail(email: string) {
     const [result] = this.findWhere({ email });
 
-    if (result) return new User(result);
+    if (!result) return undefined;
 
-    return null;
+    const user = new User(result);
+    user.id = result.id;
+    user.createdAt = result.createdAt;
+
+    return user;
   }
 
   async save() {

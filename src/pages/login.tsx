@@ -1,4 +1,5 @@
 import { useState, FormEvent, ChangeEvent } from 'react';
+import localStorageResources from '../services/resources/localStorage';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 
@@ -25,7 +26,9 @@ const Login: React.FC = () => {
 
     try {
       const response = await axios.post('api/v1/users/session', formData);
-      console.log(response.data);
+      const { token, user } = response.data;
+      localStorageResources.setAuthToken(token);
+      localStorageResources.setUserId(user.id);
       alert('Success');
       router.push('/');
     } catch (err) {

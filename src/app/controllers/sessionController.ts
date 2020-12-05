@@ -20,6 +20,7 @@ class sessionController {
     }
 
     const token = authService.generateAuthToken(user.id);
+    console.log({ token });
 
     return response.status(200).json({ user, token });
   }

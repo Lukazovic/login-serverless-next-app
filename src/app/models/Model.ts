@@ -17,11 +17,6 @@ class Model {
     );
     return users;
   }
-
-  static findById(id: string) {
-    const [user] = this.findWhere({ id });
-    return user;
-  }
 }
 
 export default Model;
