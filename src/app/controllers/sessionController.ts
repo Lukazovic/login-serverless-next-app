@@ -13,7 +13,7 @@ class sessionController {
       return response.status(404).json({ error: 'User not found!' });
     }
 
-    const isPasswordValid = String(user.password) === String(password);
+    const isPasswordValid = user.checkPassword(password);
 
     if (!isPasswordValid) {
       return response.status(401).json({ error: 'Password is not valid!' });
