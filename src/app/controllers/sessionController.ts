@@ -1,5 +1,5 @@
 import { NowRequest, NowResponse } from '@vercel/node';
-import User from '../models/UserModel';
+import User from '../models/User';
 
 import authService from '../services/tools/auth';
 
