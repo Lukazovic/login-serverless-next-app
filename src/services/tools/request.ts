@@ -1,25 +1,19 @@
 import axios from 'axios';
-import localStorageTools from '../resources/localStorage';
 
 const api = axios.create({
   baseURL: 'http://localhost:3000/api',
 });
 
-const get = (url: string) => {
-  const token = localStorageTools.getAuthToken();
-  if (token) api.defaults.headers['Authorization'] = `Bearer ${token}`;
-
-  return api.get(url);
+const setTokenHeaders = (token: string) => {
+  api.defaults.headers['Authorization'] = `Bearer ${token}`;
 };
 
-const post = (url: string, body?: object) => {
-  const token = localStorageTools.getAuthToken();
-  if (token) api.defaults.headers['Authorization'] = `Bearer ${token}`;
+const get = (url: string) => api.get(url);
 
-  return api.post(url, body);
-};
+const post = (url: string, body?: object) => api.post(url, body);
 
 export default {
   get,
   post,
+  setTokenHeaders,
 };

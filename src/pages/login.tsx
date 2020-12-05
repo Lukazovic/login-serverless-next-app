@@ -1,13 +1,15 @@
-import { useState, FormEvent, ChangeEvent } from 'react';
+import { useState, FormEvent, ChangeEvent, useContext } from 'react';
 import localStorageResources from '../services/resources/localStorage';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 
+import AuthContext from '../contexts/authContext';
 import Head from '../components/Head';
 import Navbar from '../components/Navbar';
 import Form from '../components/Form';
 
 const Login: React.FC = () => {
+  const { signIn } = useContext(AuthContext);
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -24,16 +26,7 @@ const Login: React.FC = () => {
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
 
-    try {
-      const response = await axios.post('api/v1/users/session', formData);
-      const { token, user } = response.data;
-      localStorageResources.setAuthToken(token);
-      localStorageResources.setUserId(user.id);
-      alert('Success');
-      router.push('/');
-    } catch (err) {
-      alert(err.response.data.error);
-    }
+    signIn(formData);
   };
 
   return (

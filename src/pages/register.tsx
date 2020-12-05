@@ -1,23 +1,22 @@
-import { useState, FormEvent, ChangeEvent } from 'react';
-import axios from 'axios';
-import { useRouter } from 'next/router';
+import { useState, FormEvent, ChangeEvent, useContext } from 'react';
 
 import Head from '../components/Head';
 import Navbar from '../components/Navbar';
 import Form from '../components/Form';
 
 import validateUserCreate from '../app/validators/userCreate';
+import AuthContext from '../contexts/authContext';
 
 import { IUser } from '../app/helpers/interfaces/user';
 
 const Register: React.FC = () => {
+  const { signUp } = useContext(AuthContext);
   const [formData, setFormData] = useState<IUser>({
     name: '',
     email: '',
     password: '',
     confirmPassword: '',
   });
-  const router = useRouter();
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -36,14 +35,7 @@ const Register: React.FC = () => {
       return;
     }
 
-    try {
-      const response = await axios.post('/api/v1/users', formData);
-      alert('success');
-      console.log(response.data);
-      router.push('/login');
-    } catch (err) {
-      alert(err.response.data.error);
-    }
+    signUp(formData);
   };
 
   return (
