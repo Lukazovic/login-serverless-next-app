@@ -24,8 +24,11 @@ class User extends Model {
   }
 
   static findByEmail(email: string) {
-    const [user] = this.findWhere({ email });
-    return user;
+    const [result] = this.findWhere({ email });
+
+    if (result) return new User(result);
+
+    return null;
   }
 
   async save() {
@@ -50,6 +53,10 @@ class User extends Model {
         throw err;
       }
     });
+  }
+
+  checkPassword(password: string) {
+    return bcrypt.compare(password, this.password);
   }
 
   private async generatePasswordHash(password: string) {
