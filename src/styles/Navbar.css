@@ -33,10 +33,14 @@
 
 .navbar__link {
   text-decoration: none;
-  font-size: 1.1em;
-  color: #7107ad;
   padding: 15px 25px;
+  background-color: transparent;
+  color: #7107ad;
+  font-size: 1.1em;
   font-weight: bold;
+  border: none;
+  outline: none;
+  cursor: pointer;
   transition: color 0.25s ease-in-out;
 }
 
