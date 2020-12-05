@@ -4,7 +4,7 @@
       "id": "3ec935f1-4476-4724-8ffd-2a34066c7c5f",
       "name": "Admin",
       "email": "admin@email.com",
-      "password": "password",
+      "password": "$2a$08$2Zzt3SA3dkO5Rp1Phtstr.yqyixYs7JCM9gDgiPQ9ykku8Chm5VE2",
       "createdAt": 3156161313
     }
   ]
