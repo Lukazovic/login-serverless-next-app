@@ -21,14 +21,12 @@ const auth = (handler: NowApiHandler) => async (
       if (err) throw new Error('Token is not valid');
 
       const user = UserModel.findById(decoded.id);
-      console.log(user);
 
       if (!user) throw new Error('You are not in the database');
     });
 
     handler(request, response);
   } catch (err) {
-    console.log(err.message);
     return response.json({ error: err.message });
   }
 };
