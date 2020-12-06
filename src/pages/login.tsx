@@ -1,20 +1,16 @@
-import { useState, FormEvent, ChangeEvent, useContext } from 'react';
-import localStorageResources from '../services/resources/localStorage';
-import axios from 'axios';
-import { useRouter } from 'next/router';
+import { useState, FormEvent, ChangeEvent } from 'react';
+import { useAuth } from '../contexts/authContext';
 
-import AuthContext from '../contexts/authContext';
 import Head from '../components/Head';
 import Navbar from '../components/Navbar';
 import Form from '../components/Form';
 
 const Login: React.FC = () => {
-  const { signIn } = useContext(AuthContext);
+  const { signIn } = useAuth();
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
-  const router = useRouter();
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     setFormData({

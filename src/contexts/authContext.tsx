@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createContext } from 'react';
+import React, { useState, useEffect, createContext, useContext } from 'react';
 import { useRouter } from 'next/router';
 
 import UserResources from '../services/resources/user';
@@ -77,8 +77,6 @@ export const AuthProvider: React.FC = ({ children }) => {
     }
   };
 
-  console.log(user);
-
   return (
     <AuthContext.Provider
       value={{ signed: !!user, user, signIn, signOut, signUp }}
@@ -89,3 +87,9 @@ export const AuthProvider: React.FC = ({ children }) => {
 };
 
 export default AuthContext;
+
+export const useAuth = () => {
+  const context = useContext(AuthContext);
+
+  return context;
+};

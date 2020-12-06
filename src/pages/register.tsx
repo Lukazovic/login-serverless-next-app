@@ -5,12 +5,12 @@ import Navbar from '../components/Navbar';
 import Form from '../components/Form';
 
 import validateUserCreate from '../app/validators/userCreate';
-import AuthContext from '../contexts/authContext';
+import { useAuth } from '../contexts/authContext';
 
 import { IUser } from '../app/helpers/interfaces/user';
 
 const Register: React.FC = () => {
-  const { signUp } = useContext(AuthContext);
+  const { signUp } = useAuth();
   const [formData, setFormData] = useState<IUser>({
     name: '',
     email: '',
