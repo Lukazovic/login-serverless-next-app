@@ -6,6 +6,7 @@ import '../styles/Form.css';
 import '../styles/Home.css';
 import '../styles/Login.css';
 import '../styles/Register.css';
+import '../styles/Dashboard.css';
 
 function MyApp({ Component, pageProps }) {
   return (

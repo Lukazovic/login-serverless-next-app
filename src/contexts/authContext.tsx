@@ -6,9 +6,16 @@ import localStorageResources from '../services/resources/localStorage';
 import authResources from '../services/resources/auth';
 import request from '../services/tools/request';
 
+interface IUser {
+  id: string;
+  name: string;
+  email: string;
+  createdAt: number;
+}
+
 interface IAuthContextData {
   signed: boolean;
-  user: object | null;
+  user: IUser | null;
   signIn(userData: object): void;
   signOut(): void;
   signUp(userDate: object): Promise<void>;
@@ -17,7 +24,7 @@ interface IAuthContextData {
 const AuthContext = createContext<IAuthContextData>({} as IAuthContextData);
 
 export const AuthProvider: React.FC = ({ children }) => {
-  const [user, setUser] = useState<object | null>(null);
+  const [user, setUser] = useState<IUser | null>(null);
   const router = useRouter();
 
   useEffect(() => {
@@ -69,6 +76,8 @@ export const AuthProvider: React.FC = ({ children }) => {
       alert(err.response.data.error);
     }
   };
+
+  console.log(user);
 
   return (
     <AuthContext.Provider
