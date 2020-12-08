@@ -1,4 +1,5 @@
-import { useState, FormEvent, ChangeEvent, useContext } from 'react';
+import { useState, FormEvent, ChangeEvent } from 'react';
+import { useRouter } from 'next/router';
 
 import Head from '../components/Head';
 import Navbar from '../components/Navbar';
@@ -10,7 +11,13 @@ import { useAuth } from '../contexts/authContext';
 import { IUser } from '../app/helpers/interfaces/user';
 
 const Register: React.FC = () => {
-  const { signUp } = useAuth();
+  const { signUp, signed } = useAuth();
+  const router = useRouter();
+
+  if (signed) {
+    router.push('/dashboard');
+  }
+
   const [formData, setFormData] = useState<IUser>({
     name: '',
     email: '',

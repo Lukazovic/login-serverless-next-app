@@ -1,4 +1,5 @@
 import { useState, FormEvent, ChangeEvent } from 'react';
+import { useRouter } from 'next/router';
 import { useAuth } from '../contexts/authContext';
 
 import Head from '../components/Head';
@@ -6,7 +7,13 @@ import Navbar from '../components/Navbar';
 import Form from '../components/Form';
 
 const Login: React.FC = () => {
-  const { signIn } = useAuth();
+  const { signIn, signed } = useAuth();
+  const router = useRouter();
+
+  if (signed) {
+    router.push('/dashboard');
+  }
+
   const [formData, setFormData] = useState({
     email: '',
     password: '',

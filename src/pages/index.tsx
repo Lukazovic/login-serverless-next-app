@@ -1,17 +1,18 @@
+import React from 'react';
 import Head from '../components/Head';
 import Navbar from '../components/Navbar';
 
-export default function Home() {
-  return (
-    <div>
-      <Head title="Login Serveless" />
+const Home: React.FC = () => (
+  <div>
+    <Head title="Login Serveless" />
 
-      <Navbar />
+    <Navbar />
 
-      <main id="main">
-        <h1>Welcome!</h1>
-        <h3>Login with serverless functions</h3>
-      </main>
-    </div>
-  );
-}
+    <main id="main">
+      <h1>Welcome!</h1>
+      <h3>Login with serverless functions</h3>
+    </main>
+  </div>
+);
+
+export default Home;
