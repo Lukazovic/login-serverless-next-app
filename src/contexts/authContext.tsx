@@ -6,6 +6,8 @@ import localStorageResources from '../services/resources/localStorage';
 import authResources from '../services/resources/auth';
 import request from '../services/tools/request';
 
+import Loading from '../components/Loading';
+
 interface IUser {
   id: string;
   name: string;
@@ -84,7 +86,7 @@ export const AuthProvider: React.FC = ({ children }) => {
   };
 
   if (loading) {
-    return <h1>Loading</h1>;
+    return <Loading />;
   }
 
   return (

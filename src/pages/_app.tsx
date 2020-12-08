@@ -7,6 +7,7 @@ import '../styles/Home.css';
 import '../styles/Login.css';
 import '../styles/Register.css';
 import '../styles/Dashboard.css';
+import '../styles/Loading.css';
 
 function MyApp({ Component, pageProps }) {
   return (
