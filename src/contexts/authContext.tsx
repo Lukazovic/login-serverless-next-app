@@ -25,13 +25,17 @@ const AuthContext = createContext<IAuthContextData>({} as IAuthContextData);
 
 export const AuthProvider: React.FC = ({ children }) => {
   const [user, setUser] = useState<IUser | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
   const router = useRouter();
 
   useEffect(() => {
     const token = localStorageResources.getAuthToken();
     const userId = localStorageResources.getUserId();
 
-    if (!token || !userId) return;
+    if (!token || !userId) {
+      setLoading(false);
+      return;
+    }
 
     const getUser = async () => {
       try {
@@ -42,6 +46,8 @@ export const AuthProvider: React.FC = ({ children }) => {
         localStorageResources.clearAuthToken();
         localStorageResources.clearUserId();
       }
+
+      setLoading(false);
     };
     getUser();
   }, []);
@@ -76,6 +82,10 @@ export const AuthProvider: React.FC = ({ children }) => {
       alert(err.response.data.error);
     }
   };
+
+  if (loading) {
+    return <h1>Loading</h1>;
+  }
 
   return (
     <AuthContext.Provider
